@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package WorkorderPackage;
+
+message WorkorderData{
+	string id = 1;
+	string location = 2;
+	int32 systemId = 3;
+}
+
+message CreateWorkorderInput{
+	WorkorderData input = 1;
+}
+
+message CreateWorkorderOutput{
+	WorkorderData output = 1;
+}
+
+message ReadWorkorderInput{
+	string id = 1;
+}
+
+message ReadWorkorderOutput{
+	WorkorderData output = 1;
+}
+
+message UpdateWorkorderInput{
+	string id = 1;
+}
+
+message UpdateWorkorderOutput{
+	int32 modifiedCount = 1;
+}
+
+message DeleteWorkorderInput{
+	string id = 1;
+}
+
+message DeleteWorkorderOutput{
+	int32 deleteCount = 1;
+}
+
+service WorkorderService{
+
+	rpc CreateWo(CreateWorkorderInput) returns (CreateWorkorderOutput){}
+	
+	rpc ReadWo(ReadWorkorderInput) returns (ReadWorkorderOutput){}
+
+	rpc UpdateWo(UpdateWorkorderInput) returns (UpdateWorkorderOutput){}
+
+	rpc DeleteWo(DeleteWorkorderInput) returns (DeleteWorkorderOutput){}
+}
