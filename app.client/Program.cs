@@ -23,6 +23,7 @@ public class Program
             await ReadWorkorder(client);
             await UpdateWorkorder(client);
             await DeleteWorkorder(client);
+            await ReadAllWorkorder(client);
 
             c.ShutdownAsync().Wait();
             Console.ReadKey();
@@ -119,6 +120,26 @@ public class Program
         catch (RpcException ex)
         {
             Console.WriteLine($"Error in DeleteWorkorder method. StatusCode = {ex.StatusCode}, Ex = {ex.StackTrace}");
+        }
+    }
+
+    public static async Task ReadAllWorkorder(WorkorderService.WorkorderServiceClient client)
+    {
+        try
+        {
+            var result = client.ReadAllWo(new ListWorkorderInput { });
+
+            while (await result.ResponseStream.MoveNext())
+            {
+                Console.WriteLine("start : Reading all data");
+                Console.WriteLine($"{result.ResponseStream.Current.Output.ToString()}");
+                Console.WriteLine("end : Reading all data");
+            }
+            Console.WriteLine("Reading all data from ReadAllWorkorder method is completed");
+        }
+        catch (RpcException ex)
+        {
+            Console.WriteLine($"Error in ReadAllWorkorder method. StatusCode = {ex.StatusCode}, Ex = {ex.StackTrace}");
         }
 
     }

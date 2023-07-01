@@ -40,6 +40,14 @@ message DeleteWorkorderOutput{
 	int32 deleteCount = 1;
 }
 
+message ListWorkorderInput{
+	
+}
+
+message ListWorkorderOutput{
+	WorkorderData output = 1;
+}
+
 service WorkorderService{
 
 	rpc CreateWo(CreateWorkorderInput) returns (CreateWorkorderOutput){}
@@ -49,4 +57,6 @@ service WorkorderService{
 	rpc UpdateWo(UpdateWorkorderInput) returns (UpdateWorkorderOutput){}
 
 	rpc DeleteWo(DeleteWorkorderInput) returns (DeleteWorkorderOutput){}
+
+	rpc ReadAllWo(ListWorkorderInput) returns (stream ListWorkorderOutput){}
 }

@@ -61,6 +61,10 @@ namespace WorkorderPackage {
     static readonly grpc::Marshaller<global::WorkorderPackage.DeleteWorkorderInput> __Marshaller_WorkorderPackage_DeleteWorkorderInput = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::WorkorderPackage.DeleteWorkorderInput.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::WorkorderPackage.DeleteWorkorderOutput> __Marshaller_WorkorderPackage_DeleteWorkorderOutput = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::WorkorderPackage.DeleteWorkorderOutput.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::WorkorderPackage.ListWorkorderInput> __Marshaller_WorkorderPackage_ListWorkorderInput = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::WorkorderPackage.ListWorkorderInput.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::WorkorderPackage.ListWorkorderOutput> __Marshaller_WorkorderPackage_ListWorkorderOutput = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::WorkorderPackage.ListWorkorderOutput.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::WorkorderPackage.CreateWorkorderInput, global::WorkorderPackage.CreateWorkorderOutput> __Method_CreateWo = new grpc::Method<global::WorkorderPackage.CreateWorkorderInput, global::WorkorderPackage.CreateWorkorderOutput>(
@@ -94,6 +98,14 @@ namespace WorkorderPackage {
         __Marshaller_WorkorderPackage_DeleteWorkorderInput,
         __Marshaller_WorkorderPackage_DeleteWorkorderOutput);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::WorkorderPackage.ListWorkorderInput, global::WorkorderPackage.ListWorkorderOutput> __Method_ReadAllWo = new grpc::Method<global::WorkorderPackage.ListWorkorderInput, global::WorkorderPackage.ListWorkorderOutput>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ReadAllWo",
+        __Marshaller_WorkorderPackage_ListWorkorderInput,
+        __Marshaller_WorkorderPackage_ListWorkorderOutput);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -124,6 +136,12 @@ namespace WorkorderPackage {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::WorkorderPackage.DeleteWorkorderOutput> DeleteWo(global::WorkorderPackage.DeleteWorkorderInput request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task ReadAllWo(global::WorkorderPackage.ListWorkorderInput request, grpc::IServerStreamWriter<global::WorkorderPackage.ListWorkorderOutput> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -237,6 +255,16 @@ namespace WorkorderPackage {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteWo, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::WorkorderPackage.ListWorkorderOutput> ReadAllWo(global::WorkorderPackage.ListWorkorderInput request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ReadAllWo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::WorkorderPackage.ListWorkorderOutput> ReadAllWo(global::WorkorderPackage.ListWorkorderInput request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_ReadAllWo, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override WorkorderServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -254,7 +282,8 @@ namespace WorkorderPackage {
           .AddMethod(__Method_CreateWo, serviceImpl.CreateWo)
           .AddMethod(__Method_ReadWo, serviceImpl.ReadWo)
           .AddMethod(__Method_UpdateWo, serviceImpl.UpdateWo)
-          .AddMethod(__Method_DeleteWo, serviceImpl.DeleteWo).Build();
+          .AddMethod(__Method_DeleteWo, serviceImpl.DeleteWo)
+          .AddMethod(__Method_ReadAllWo, serviceImpl.ReadAllWo).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -268,6 +297,7 @@ namespace WorkorderPackage {
       serviceBinder.AddMethod(__Method_ReadWo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::WorkorderPackage.ReadWorkorderInput, global::WorkorderPackage.ReadWorkorderOutput>(serviceImpl.ReadWo));
       serviceBinder.AddMethod(__Method_UpdateWo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::WorkorderPackage.UpdateWorkorderInput, global::WorkorderPackage.UpdateWorkorderOutput>(serviceImpl.UpdateWo));
       serviceBinder.AddMethod(__Method_DeleteWo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::WorkorderPackage.DeleteWorkorderInput, global::WorkorderPackage.DeleteWorkorderOutput>(serviceImpl.DeleteWo));
+      serviceBinder.AddMethod(__Method_ReadAllWo, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::WorkorderPackage.ListWorkorderInput, global::WorkorderPackage.ListWorkorderOutput>(serviceImpl.ReadAllWo));
     }
 
   }

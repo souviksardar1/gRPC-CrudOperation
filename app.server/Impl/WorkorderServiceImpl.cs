@@ -93,5 +93,35 @@ namespace app.server.Impl
                 return Task.FromResult(new DeleteWorkorderOutput { DeleteCount = 0 });
             }
         }
+
+        public override async Task ReadAllWo(ListWorkorderInput request, IServerStreamWriter<ListWorkorderOutput> responseStream, ServerCallContext context)
+        {
+            var filter = Builders<BsonDocument>.Filter.Empty;
+
+            var res = collection.Find(filter).ToList();
+            if (res != null)
+            {
+
+                foreach (var wo in res)
+                {
+                    await responseStream.WriteAsync(new ListWorkorderOutput { Output = new WorkorderData
+                    {
+                        Id = Convert.ToString(wo.GetValue("_id")),
+                        SystemId = wo.GetValue("systemId").AsInt32,
+                        Location = wo.GetValue("location").AsString
+                    } });
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new ListWorkorderOutput
+                {
+                    Output = new WorkorderData
+                    {
+                        Id = null
+                    }
+                });
+            }
+        }
     }
 }
